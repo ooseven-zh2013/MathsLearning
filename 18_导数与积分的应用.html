@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>18 导数与积分的应用：学以致用 — 未花的微积分教程</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+         background:#1e1e2e;color:#cdd6f4;max-width:820px;margin:0 auto;padding:2rem 1.5rem;line-height:1.75}
+    h1{color:#cba6f7;font-size:2rem;border-bottom:2px solid #45475a;padding-bottom:.5rem;margin:2rem 0 1rem}
+    h2{color:#89b4fa;font-size:1.5rem;margin:1.8rem 0 .8rem}
+    h3{color:#a6e3a1;font-size:1.15rem;margin:1.2rem 0 .5rem}
+    p{margin:.7rem 0}
+    strong{color:#f5c2e7}
+    code{background:#313244;padding:.15em .4em;border-radius:4px;font-size:.9em;font-family:"Cascadia Code",Consolas,monospace;color:#fab387}
+    pre{background:#11111b;padding:1rem;border-radius:8px;overflow-x:auto;margin:.8rem 0}
+    pre code{background:none;padding:0;color:#cdd6f4;font-size:.85em}
+    blockquote{border-left:4px solid #cba6f7;padding:.4rem 1rem;margin:.8rem 0;background:#181825;border-radius:0 6px 6px 0;color:#bac2de}
+    hr{border:none;border-top:1px solid #45475a;margin:2rem 0}
+    table{border-collapse:collapse;width:100%;margin:1rem 0}
+    th{background:#313244;color:#cba6f7;padding:.5rem .8rem;text-align:left}
+    td{padding:.4rem .8rem;border-bottom:1px solid #313244}
+    ul,ol{padding-left:1.5rem;margin:.5rem 0}
+    li{margin:.25rem 0}
+    a{color:#89b4fa;text-decoration:none}
+    a:hover{text-decoration:underline}
+    details{margin:.8rem 0;background:#181825;border-radius:8px;padding:.6rem 1rem;border:1px solid #313244}
+    details summary{cursor:pointer;color:#f9e2af;font-weight:bold;padding:.3rem 0}
+    details[open] summary{margin-bottom:.5rem}
+    .nav{border-top:2px solid #45475a;margin-top:3rem;padding-top:1rem;color:#6c7086}
+    .nav a{margin:0 .3rem}
+    .emoji{font-style:normal}
+
+</style>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};
+</script>
+</head>
+<body>
+<div class="container">
+<h1>18 导数与积分的应用：学以致用</h1>
+<blockquote>学了导数和积分，能干什么？本章把所有工具串起来，解决实际问题。</blockquote>
+<hr>
+<h2>一、用导数分析函数的性质</h2>
+<h3>1. 单调性（你已经知道直觉）</h3>
+<p>🔑 <strong>用导数判断单调性</strong>：</p>
+<table>
+<thead><tr><th>$f'(x)$ 的符号</th><th>函数行为</th></tr></thead>
+<thead><tr><th>$f'(x)$ 的符号</th><th>函数行为</th></tr></thead>
+<tbody>
+<tr><td>$f'(x) > 0$</td><td>函数<strong>递增</strong>（$x$ 变大，$y$ 也变大）</td></tr>
+<tr><td>$f'(x) < 0$</td><td>函数<strong>递减</strong>（$x$ 变大，$y$ 变小）</td></tr>
+<tr><td>$f'(x) = 0$</td><td>可能是<strong>极值点</strong>（最高点或最低点）</td></tr>
+</tbody>
+</table>
+<h3>例子：分析 $f(x) = x^2 - 4x + 3$</h3>
+<pre><code>
+$f'(x) = 2x - 4$
+
+当 $2x - 4 > 0 \to x > 2$：$f'(x) > 0$ → 递增
+当 $2x - 4 < 0 \to x < 2$：$f'(x) < 0$ → 递减
+</code></pre>
+<p>所以：</p>
+<ul>
+<li>在 $(-\infty, 2)$ 上<strong>递减</strong></li>
+<li>在 $(2, +\infty)$ 上<strong>递增</strong></li>
+<li>$x = 2$ 是<strong>最低点</strong>（极小值点）</li>
+</ul>
+<hr>
+<h2>二、极值点：最高点和最低点</h2>
+<p>📖 <strong>极值</strong>：函数在某点附近的最高或最低值。</p>
+<p><strong>寻找极值的步骤</strong>：</p>
+<ol>
+<li>求导数 $f'(x)$</li>
+<li>解方程 $f'(x) = 0$，找到<strong>驻点</strong></li>
+<li>判断驻点左右 $f'(x)$ 的符号变化</li>
+</ol>
+<table>
+<thead><tr><th>符号变化</th><th>极值类型</th></tr></thead>
+<thead><tr><th>符号变化</th><th>极值类型</th></tr></thead>
+<tbody>
+<tr><td>$f'(x)$：$+ \to -$</td><td><strong>极大值</strong>（局部最高点）</td></tr>
+<tr><td>$f'(x)$：$- \to +$</td><td><strong>极小值</strong>（局部最低点）</td></tr>
+<tr><td>$f'(x)$：不变号</td><td><strong>不是极值</strong>（拐点）</td></tr>
+</tbody>
+</table>
+<h3>例子：$f(x) = x^3 - 3x$</h3>
+<p>$$f'(x) = 3x^2 - 3 = 3(x^2 - 1) = 3(x-1)(x+1)$$</p>
+<p>驻点：$x = 1$ 和 $x = -1$</p>
+<p>在 $x = -1$ 附近：</p>
+<ul>
+<li>$x < -1$：$f'(x) > 0$（递增）</li>
+<li>$x > -1$（但 $< 1$）：$f'(x) < 0$（递减）</li>
+<li>$\to$ $+ \to -$ ：<strong>极大值点</strong>！</li>
+</ul>
+<p>在 $x = 1$ 附近：</p>
+<ul>
+<li>$x < 1$（但 $> -1$）：$f'(x) < 0$（递减）</li>
+<li>$x > 1$：$f'(x) > 0$（递增）</li>
+<li>$\to$ $- \to +$ ：<strong>极小值点</strong>！</li>
+</ul>
+<hr>
+<h2>三、简单的物理应用</h2>
+<h3>1. 运动学：位置、速度、加速度</h3>
+<p>回忆一下：</p>
+<p>$$s(t) \rightarrow \text{位置函数}$$ $$v(t) = s'(t) \rightarrow \text{速度（位置的导数）}$$ $$a(t) = v'(t) = s''(t) \rightarrow \text{加速度（速度的导数）}$$</p>
+<p><strong>反过来（积分）</strong>：</p>
+<p>$$v(t) = \int a(t) dt + v_0 \quad (v_0 = \text{初速度})$$ $$s(t) = \int v(t) dt + s_0 \quad (s_0 = \text{初始位置})$$</p>
+<h3>例子：自由落体</h3>
+<p>物体从静止自由下落（忽略空气阻力）：</p>
+<ul>
+<li>加速度 $a(t) = g \approx 9.8$ m/s²（常数）</li>
+<li>速度：$v(t) = \int g dt = gt + v_0$，$v_0 = 0 \to \mathbf{v(t) = gt}$</li>
+<li>位置：$s(t) = \int gt dt = \frac{1}{2}gt^2 + s_0$，$s_0 = 0 \to \mathbf{s(t) = \frac{1}{2}gt^2}$</li>
+</ul>
+<hr>
+<h2>四、用积分算面积</h2>
+<h3>1. 曲线下的面积</h3>
+<p>你已经学过了：<strong>$\displaystyle\int_a^b f(x) dx =$ 曲线与 $x$ 轴之间的面积</strong>（$f(x) \geq 0$ 时）。</p>
+<h3>2. 两条曲线之间的面积</h3>
+<p>如果有两个函数 $f(x)$ 和 $g(x)$，且 $f(x) \geq g(x)$ 在 $[a, b]$ 上：</p>
+<blockquote>$$\text{面积} = \int_a^b (f(x) - g(x)) dx$$</blockquote>
+<pre><code>
+    y
+    ↑
+    │     f(x)
+    │   ⋂⋯⋯⋅
+    │  /      ← $f(x) - g(x) =$ 两条线之间的距离
+    │ /       
+    │/ g(x)  
+  ──┼───────→ x
+    a       b
+</code></pre>
+<h3>例子：求 $y = x^2$ 和 $y = x$ 在 $[0, 1]$ 之间的面积</h3>
+<p>在 $[0,1]$ 上：$x \geq x^2$（直线在上方）</p>
+<p>$$ \begin{aligned} \text{面积} &= \int_0^1 (x - x^2) dx \\ &= \left(\frac{x^2}{2} - \frac{x^3}{3}\right)\Big|_0^1 \\ &= \left(\frac{1}{2} - \frac{1}{3}\right) - (0 - 0) \\ &= \frac{1}{6} \; \checkmark \end{aligned} $$</p>
+<hr>
+<h2>五、最大值和最小值（优化问题入门）</h2>
+<p>现实问题中经常需要找"最大"或"最小"：</p>
+<blockquote><strong>怎样才能让面积最大？</strong> <strong>怎样才能让成本最低？</strong></blockquote>
+<h3>基本思路：</h3>
+<ol>
+<li>建立函数 $f(x)$（面积、成本等）</li>
+<li>求导数 $f'(x)$</li>
+<li>解 $f'(x) = 0$ 找驻点</li>
+<li>比较驻点和端点的函数值 → <strong>最大的就是最大值，最小的就是最小值</strong></li>
+</ol>
+<h3>例子：用 $100$ 米篱笆围最大面积的矩形</h3>
+<p>设矩形长 $= x$，宽 $= y$ 周长：$2x + 2y = 100 \to x + y = 50 \to y = 50 - x$</p>
+<p>面积：$A(x) = x \cdot y = x(50 - x) = 50x - x^2$</p>
+<p>求最大值： $A'(x) = 50 - 2x = 0 \to x = 25$ 此时 $y = 50 - 25 = 25$</p>
+<p>→ <strong>正方形时面积最大</strong>！最大面积 $= 25 \times 25 = 625$ 平方米 ✓</p>
+<hr>
+<h2>六、积分在概率中的直观介绍（选学）</h2>
+<p>你也许听说过"正态分布"。它的曲线下面是<strong>钟形曲线</strong>：</p>
+<pre><code>
+    y
+    ↑
+  1 ·     ⋂
+    │    / \
+    │   /   \
+    │  /     \
+    │ /       \
+  ──┼─────────→ x
+</code></pre>
+<p><strong>曲线下的总面积 $= 1$</strong>（概率的总和是 $100\%$）。</p>
+<p>这需要用积分来严格定义，但你现在只需要知道：<strong>积分 $=$ 累积 $=$ 总面积</strong>。</p>
+<hr>
+<h2>✅ 检查点</h2>
+<ol>
+<li>$f(x) = x^2 - 4x + 5$ 在 $x = 2$ 附近是递增还是递减？$x = 2$ 是极值点吗？</li>
+<li>自由落体中，如果初速度 $v_0 = 10$ m/s，求 $v(t)$ 和 $s(t)$（$a = g = 9.8$）。</li>
+<li>求 $y = x$ 和 $y = x^2$ 在 $[0, 2]$ 之间围成的面积。</li>
+<li>用导数证明：周长为定值时，矩形中正方形的面积最大。</li>
+</ol>
+<details>
+<p><summary>点击查看答案</summary></p>
+<ol>
+<li>$f'(x) = 2x - 4$。在 $x = 2$ 时 $f'(2) = 0$。</li>
+</ol>
+<p>   $x < 2$：$f'(x) < 0$（递减）    $x > 2$：$f'(x) > 0$（递增）    → $x = 2$ 是<strong>极小值点</strong>（最低点）。$f(2) = 4 - 8 + 5 = 1$。</p>
+<ol>
+<li>$v(t) = \int g dt + v_0 = gt + 10$</li>
+</ol>
+<p>   $s(t) = \int (gt+10) dt = \frac{1}{2}gt^2 + 10t + s_0$（$s_0 = 0$ 假设从原点开始）    → $s(t) = 4.9t^2 + 10t$</p>
+<ol>
+<li>在 $[0,1]$ 上：$x \geq x^2$；在 $[1,2]$ 上：$x^2 \geq x$</li>
+</ol>
+<p>   面积 $= \displaystyle\int_0^1 (x - x^2) dx + \displaystyle\int_1^2 (x^2 - x) dx$    $= \left(\frac{1}{2} - \frac{1}{3}\right) + \left(\frac{8}{3} - 2 - \frac{1}{2} + \frac{1}{3}\right)$    $= \frac{1}{6} + \frac{3}{6} = \mathbf{\dfrac{2}{3}}$ ✓</p>
+<ol>
+<li>设长 $x$ 宽 $y$，周长 $2(x+y) = L$（常数）→ $y = \frac{L}{2} - x$</li>
+</ol>
+<p>   面积 $A(x) = x(\frac{L}{2} - x) = \frac{L}{2}x - x^2$    $A'(x) = \frac{L}{2} - 2x = 0 \to x = \frac{L}{4}$    此时 $y = \frac{L}{2} - \frac{L}{4} = \frac{L}{4} = x$ → <strong>正方形</strong> ✓</p>
+</details>
+<hr>
+<h2>🏁 恭喜！</h2>
+<p>你已经完成了微积分入门教程的所有 17 个章节！</p>
+<h3>你现在能做什么？</h3>
+<ul>
+<li>理解<strong>极限</strong>的思想（无限逼近）</li>
+<li>计算<strong>导数</strong>（变化率）</li>
+<li>用导数分析函数的<strong>单调性</strong>和<strong>极值</strong></li>
+<li>计算<strong>积分</strong>（累积、面积）</li>
+<li>理解微积分的<strong>物理应用</strong>（运动学）</li>
+</ul>
+<h3>下一步学什么？</h3>
+<ul>
+<li><strong>高中数学</strong>：三角函数深化、向量、立体几何、数列与数学归纳法</li>
+<li><strong>微积分进阶</strong>：分部积分、换元积分、微分方程入门</li>
+<li><strong>线性代数</strong>：矩阵、向量空间（AI/ML 的基础！）</li>
+<li><strong>概率统计</strong>：用积分理解连续概率分布</li>
+</ul>
+<hr>
+<p>📝 <strong>全教程完</strong> — 恭喜你完成了一次从有理数到微积分的思维冒险！</p>
+<div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a> · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./17_定积分.html">上一章</a> · <a href="./19_反常积分.html">下一章</a></div>
+</div>
+</body>
+</html>

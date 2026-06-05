@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>04 集合论基础：万物的容器 — 未花的微积分教程</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+         background:#1e1e2e;color:#cdd6f4;max-width:820px;margin:0 auto;padding:2rem 1.5rem;line-height:1.75}
+    h1{color:#cba6f7;font-size:2rem;border-bottom:2px solid #45475a;padding-bottom:.5rem;margin:2rem 0 1rem}
+    h2{color:#89b4fa;font-size:1.5rem;margin:1.8rem 0 .8rem}
+    h3{color:#a6e3a1;font-size:1.15rem;margin:1.2rem 0 .5rem}
+    p{margin:.7rem 0}
+    strong{color:#f5c2e7}
+    code{background:#313244;padding:.15em .4em;border-radius:4px;font-size:.9em;font-family:"Cascadia Code",Consolas,monospace;color:#fab387}
+    pre{background:#11111b;padding:1rem;border-radius:8px;overflow-x:auto;margin:.8rem 0}
+    pre code{background:none;padding:0;color:#cdd6f4;font-size:.85em}
+    blockquote{border-left:4px solid #cba6f7;padding:.4rem 1rem;margin:.8rem 0;background:#181825;border-radius:0 6px 6px 0;color:#bac2de}
+    hr{border:none;border-top:1px solid #45475a;margin:2rem 0}
+    table{border-collapse:collapse;width:100%;margin:1rem 0}
+    th{background:#313244;color:#cba6f7;padding:.5rem .8rem;text-align:left}
+    td{padding:.4rem .8rem;border-bottom:1px solid #313244}
+    ul,ol{padding-left:1.5rem;margin:.5rem 0}
+    li{margin:.25rem 0}
+    a{color:#89b4fa;text-decoration:none}
+    a:hover{text-decoration:underline}
+    details{margin:.8rem 0;background:#181825;border-radius:8px;padding:.6rem 1rem;border:1px solid #313244}
+    details summary{cursor:pointer;color:#f9e2af;font-weight:bold;padding:.3rem 0}
+    details[open] summary{margin-bottom:.5rem}
+    .nav{border-top:2px solid #45475a;margin-top:3rem;padding-top:1rem;color:#6c7086}
+    .nav a{margin:0 .3rem}
+    .emoji{font-style:normal}
+
+</style>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};
+</script>
+</head>
+<body>
+<div class="container">
+<h1>04 集合论基础：万物的容器</h1>
+<blockquote>"集合"听起来很高级，其实就是一个"框"，把一些东西放进去。用集合的视角，很多数学概念会变得特别清晰。</blockquote>
+<hr>
+<h2>一、什么是集合？</h2>
+<p>📖 <strong>集合</strong>：把一些<strong>确定的</strong>对象看作一个整体。</p>
+<p>关键词是"确定的"——对于任意一个东西，必须能明确判断它"在不在"这个集合里。</p>
+<p>例子：</p>
+<ul>
+<li>你班上的所有同学 → 一个集合</li>
+<li>所有正整数 → 一个集合</li>
+<li>"比较高的同学" → <strong>不是</strong>集合（多高算高？不确定）</li>
+</ul>
+<p>💡 <strong>元素</strong>：集合里的每个东西叫做这个集合的<strong>元素</strong>。</p>
+<hr>
+<h2>二、基础符号</h2>
+<h3>属于：$\in$</h3>
+<p>如果 $a$ 是集合 $A$ 的元素，记作 <strong>$a \in A$</strong>（读作"$a$ 属于 $A$"）。</p>
+<h3>不属于：$\notin$</h3>
+<p>如果 $a$ 不是 $A$ 的元素，记作 <strong>$a \notin A$</strong>。</p>
+<h3>空集：$\emptyset$</h3>
+<p>没有任何元素的集合，记作 <strong>$\emptyset$</strong>（或 $\{\}$）。</p>
+<p>例子：</p>
+<ul>
+<li>"大于 $5$ 且小于 $4$ 的实数"的集合 → $\emptyset$（没有这样的数）</li>
+</ul>
+<hr>
+<h2>三、集合的表示法</h2>
+<h3>方法一：列举法</h3>
+<p>把元素一个一个写在大括号里。</p>
+<pre><code>
+A = \{1, 2, 3, 4, 5\}      ← 1 到 5 的整数
+B = \{2, 3, 5, 7, 11, \dots\} ← 全体质数（用 \dots 表示"以此类推"）
+</code></pre>
+<h3>方法二：描述法</h3>
+<p>用语言描述这个集合的特征。</p>
+<pre><code>
+C = \{x \mid x \text{ 是大于 } 0 \text{ 的实数}\}     ← "所有大于 $0$ 的实数"
+D = \{x \mid x^2 = 4\}              ← "平方等于 $4$ 的数"，即 $\{2, -2\}$
+</code></pre>
+<p>竖线 "$\mid$" 读作 "满足" 或 "使得"。</p>
+<p>描述法的一般格式：</p>
+<pre><code>
+\{元素的一般形式 \mid 元素满足的条件\}
+</code></pre>
+<hr>
+<h2>四、常用数集</h2>
+<p>数学中有几个数集有专用符号，你需要记住：</p>
+<table>
+<thead><tr><th>符号</th><th>名称</th><th>含义</th><th>例子</th></tr></thead>
+<thead><tr><th>符号</th><th>名称</th><th>含义</th><th>例子</th></tr></thead>
+<tbody>
+<tr><td>$\mathbb{N}$</td><td>自然数集</td><td>$\{0, 1, 2, 3, \dots\}$</td><td>$3 \in \mathbb{N}$，$-1 \notin \mathbb{N}$</td></tr>
+<tr><td>$\mathbb{Z}$</td><td>整数集</td><td>$\{\dots, -2, -1, 0, 1, 2, \dots\}$</td><td>$-5 \in \mathbb{Z}$，$\frac{1}{2} \notin \mathbb{Z}$</td></tr>
+<tr><td>$\mathbb{Q}$</td><td>有理数集</td><td>所有能写成分数的数</td><td>$\frac{1}{2} \in \mathbb{Q}$，$\sqrt{2} \notin \mathbb{Q}$</td></tr>
+<tr><td>$\mathbb{R}$</td><td>实数集</td><td>有理数 $+$ 无理数</td><td>$\pi \in \mathbb{R}$</td></tr>
+<tr><td>$\emptyset$</td><td>空集</td><td>没有任何元素</td><td></td></tr>
+</tbody>
+</table>
+<p>🔑 关系：<strong>$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$</strong>（$\subset$ 表示"被包含于"，后面会讲）</p>
+<hr>
+<h2>五、集合之间的关系</h2>
+<h3>子集：$\subseteq$</h3>
+<p>如果集合 $A$ 的每个元素都在集合 $B$ 中，那么 $A$ 是 $B$ 的<strong>子集</strong>，记作 <strong>$A \subseteq B$</strong>。</p>
+<pre><code>
+A = \{1, 2\}
+B = \{1, 2, 3\}
+⇒ A \subseteq B（B 包含了 A 的所有元素）
+</code></pre>
+<p>一个容易混淆的点：$\emptyset$ 是<strong>任何集合</strong>的子集。因为"空集里的每个元素都在 $X$ 中"这个命题——由于空集里没有任何元素，所以这句话"平凡地"成立。</p>
+<h3>真子集：$\subset$</h3>
+<p>如果 $A \subseteq B$ 且 $A \neq B$（$B$ 中至少有一个元素不在 $A$ 中），则 $A$ 是 $B$ 的<strong>真子集</strong>，记作 <strong>$A \subset B$</strong>。</p>
+<pre><code>
+\{1, 2\} \subset \{1, 2, 3\}  ← 真子集（$\{1,2,3\}$ 有额外的元素 $3$）
+\{1, 2, 3\} \subseteq \{1, 2, 3\} ← 子集，但不是真子集（两者相等）
+</code></pre>
+<h3>相等：$=$</h3>
+<p>两个集合 $A$ 和 $B$ <strong>相等</strong>，当且仅当 $A \subseteq B$ 且 $B \subseteq A$。</p>
+<p>换句话说，它们包含完全相同的元素。</p>
+<hr>
+<h2>六、集合的运算</h2>
+<h3>交集：$\cap$</h3>
+<p><strong>$A \cap B$</strong> $= \{x \mid x \in A \text{ 且 } x \in B\}$</p>
+<p>两个集合的公共部分。</p>
+<pre><code>
+A = \{1, 2, 3\}
+B = \{2, 3, 4\}
+A \cap B = \{2, 3\}
+</code></pre>
+<h3>并集：$\cup$</h3>
+<p><strong>$A \cup B$</strong> $= \{x \mid x \in A \text{ 或 } x \in B\}$</p>
+<p>两个集合加在一起（不重复算）。</p>
+<pre><code>
+A = \{1, 2, 3\}
+B = \{2, 3, 4\}
+A \cup B = \{1, 2, 3, 4\}
+</code></pre>
+<h3>补集</h3>
+<p>在给定的"全集"中，不属于某个集合的元素组成的集合。</p>
+<pre><code>
+全集 U = \{1, 2, 3, 4, 5\}
+A = \{1, 2\}
+A 的补集 = \{3, 4, 5\}（在 U 中但不在 A 中的元素）
+</code></pre>
+<hr>
+<h2>七、集合和函数的关系（预览）</h2>
+<p>后面我们会学到<strong>函数</strong>的概念。函数的本质就是从"一个集合"到"另一个集合"的对应规则。</p>
+<pre><code>
+定义域（x 的取值范围）→ 一个集合
+值域（y 的取值范围）  → 另一个集合
+函数                 → 连接两个集合的规则
+</code></pre>
+<p>现在你只需要记住：<strong>集合是一切的基础</strong>。</p>
+<hr>
+<h2>✅ 检查点</h2>
+<ol>
+<li>用两种方法表示"大于 $3$ 且小于 $8$ 的整数"组成的集合。</li>
+<li>判断：$\emptyset \subseteq \{1, 2\}$？$\mathbb{N} \subseteq \mathbb{Z}$？$\mathbb{N} \subset \mathbb{Z}$？</li>
+<li>$A = \{1, 3, 5, 7\}$，$B = \{2, 3, 5, 8\}$，求 $A \cap B$ 和 $A \cup B$。</li>
+<li>$\mathbb{N}$、$\mathbb{Z}$、$\mathbb{Q}$、$\mathbb{R}$ 的关系是什么？用 $\subseteq$ 或 $\subset$ 写出它们之间的包含关系。</li>
+</ol>
+<details>
+<p><summary>点击查看答案</summary></p>
+<ol>
+<li>列举法：$\{4, 5, 6, 7\}$；描述法：$\{x \in \mathbb{Z} \mid 3 < x < 8\}$</li>
+<li>都对。$\emptyset \subseteq \{1, 2\}$（空集是任何集合的子集）；$\mathbb{N} \subseteq \mathbb{Z}$（自然数都是整数）；$\mathbb{N} \subset \mathbb{Z}$（$\mathbb{N}$ 是 $\mathbb{Z}$ 的真子集，$\mathbb{Z}$ 还有负数）</li>
+<li>$A \cap B = \{3, 5\}$；$A \cup B = \{1, 2, 3, 5, 7, 8\}$</li>
+<li>$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$</li>
+</ol>
+</details>
+<hr>
+<p>📝 <strong>下一章</strong>：<a href="./05_坐标与图像.html">04 坐标与图像</a></p>
+<div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a> · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./03_命题与逻辑.html">上一章</a> · <a href="./05_坐标与图像.html">下一章</a></div>
+</div>
+</body>
+</html>
