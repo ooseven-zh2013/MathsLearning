@@ -104,17 +104,17 @@
 <hr>
 <h2>✅ 检查点</h2>
 <details>
-<p><summary>1. 计算 $\iiint_{\Omega} z\,dV$，$\Omega$ 是 $x^2 + y^2 + z^2 \leq 1$ 的上半球（$z \geq 0$）</summary></p>
+<summary>1. 计算 $\iiint_{\Omega} z\,dV$，$\Omega$ 是 $x^2 + y^2 + z^2 \leq 1$ 的上半球（$z \geq 0$）</summary>
 <p>用球坐标，上半球：$\rho \in [0, 1]$，$\varphi \in [0, \frac{\pi}{2}]$，$\theta \in [0, 2\pi]$。</p>
 <p>$$ \begin{aligned} \iiint_{\Omega} z\,dV &= \int_{0}^{2\pi} \int_{0}^{\frac{\pi}{2}} \int_{0}^{1} (\rho\cos\varphi) \cdot \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta \\[4pt] &= \int_{0}^{2\pi} d\theta \cdot \int_{0}^{\frac{\pi}{2}} \cos\varphi\sin\varphi\,d\varphi \cdot \int_{0}^{1} \rho^3\,d\rho \\[4pt] &= 2\pi \cdot \left[ \frac{\sin^2\varphi}{2} \right]_{0}^{\frac{\pi}{2}} \cdot \frac{1}{4} \\[4pt] &= 2\pi \cdot \frac{1}{2} \cdot \frac{1}{4} = \frac{\pi}{4} \end{aligned} $$</p>
 </details>
 <details>
-<p><summary>2. 柱坐标的 $dV = r\,dr\,d\theta\,dz$ 中 $r$ 是哪来的？</summary></p>
+<summary>2. 柱坐标的 $dV = r\,dr\,d\theta\,dz$ 中 $r$ 是哪来的？</summary>
 <p>来自坐标变换的 Jacobian 行列式。直角到极坐标 $(x, y) = (r\cos\theta, r\sin\theta)$ 的 Jacobian 是 $r$，再做一次 $z$ 的变换（恒等变换，Jacobian = 1），总体 $r \times 1 = r$。</p>
 <p>直观理解：$r$ 离原点越远，同样的 $dr\,d\theta$ 覆盖的实际面积越大。</p>
 </details>
 <details>
-<p><summary>3. 什么时候用"先二后一"（截面法）？</summary></p>
+<summary>3. 什么时候用"先二后一"（截面法）？</summary>
 <p>当被积函数只依赖于一个变量（如 $f(z)$）且截面面积 $A(z)$ 容易求时。典型场景：旋转体的体积。</p>
 </details>
 <hr>

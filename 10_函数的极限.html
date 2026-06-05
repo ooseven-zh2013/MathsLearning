@@ -44,45 +44,73 @@
 <hr>
 <h2>一、函数极限的直观理解</h2>
 <p>你正在沿着 $y = f(x)$ 的图像走，越走越靠近 $x = 1$ 这个位置。你不需要真的"走到" $x = 1$，你只需要看你正在<strong>趋近</strong>的高度。</p>
-<pre><code>
-        y
-        ↑
-       3 ·  ← 当 $x \to 1$ 时，$f(x) \to$？
-       2 ·
-       1 ·    ·$(1, ?)$
-  ───────┼───┬───→ x
-         0   1
-</code></pre>
+<div style="text-align:center;margin:1.5em 0;">
+<svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#cdd6f4"/>
+    </marker>
+  </defs>
+  <!-- 坐标轴 -->
+  <line x1="60" y1="20" x2="60" y2="200" stroke="#585b70" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="60" y1="180" x2="330" y2="180" stroke="#585b70" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- 轴标签 -->
+  <text x="70" y="28" fill="#cdd6f4" font-size="16" font-style="italic">y</text>
+  <text x="335" y="185" fill="#cdd6f4" font-size="16" font-style="italic">x</text>
+  <!-- y 轴刻度 -->
+  <line x1="54" y1="180" x2="66" y2="180" stroke="#585b70" stroke-width="1"/>
+  <text x="48" y="185" fill="#a6adc8" font-size="13" text-anchor="end">0</text>
+  <line x1="54" y1="130" x2="66" y2="130" stroke="#585b70" stroke-width="1"/>
+  <text x="48" y="135" fill="#a6adc8" font-size="13" text-anchor="end">1</text>
+  <line x1="54" y1="80" x2="66" y2="80" stroke="#585b70" stroke-width="1"/>
+  <text x="48" y="85" fill="#a6adc8" font-size="13" text-anchor="end">2</text>
+  <line x1="54" y1="30" x2="66" y2="30" stroke="#585b70" stroke-width="1"/>
+  <text x="48" y="35" fill="#a6adc8" font-size="13" text-anchor="end">3</text>
+  <!-- x 轴刻度 -->
+  <line x1="60" y1="176" x2="60" y2="186" stroke="#585b70" stroke-width="1"/>
+  <line x1="180" y1="176" x2="180" y2="186" stroke="#585b70" stroke-width="1"/>
+  <text x="180" y="198" fill="#a6adc8" font-size="13" text-anchor="middle">1</text>
+  <!-- 格点：f(1) 的值在 y 轴上标出 -->
+  <circle cx="60" cy="130" r="4" fill="#f5c2e7"/>
+  <circle cx="60" cy="80" r="4" fill="#f5c2e7"/>
+  <circle cx="60" cy="30" r="4" fill="#f5c2e7"/>
+  <!-- (1, ?) 点 -->
+  <circle cx="180" cy="100" r="5" fill="none" stroke="#f38ba8" stroke-width="2"/>
+  <text x="180" y="96" fill="#f38ba8" font-size="14" text-anchor="middle" dominant-baseline="middle">?</text>
+  <!-- 标注文字 -->
+  <text x="190" y="42" fill="#cdd6f4" font-size="15">
+    <tspan font-weight="bold">当</tspan>
+    <tspan font-style="italic">x</tspan> → 1 <tspan font-weight="bold">时，</tspan>
+  </text>
+  <text x="190" y="62" fill="#cdd6f4" font-size="15">
+    <tspan font-style="italic">f</tspan>(<tspan font-style="italic">x</tspan>) → <tspan font-weight="bold">？</tspan>
+  </text>
+  <!-- 箭头指向 (1,?) -->
+  <line x1="285" y1="52" x2="195" y2="95" stroke="#f5c2e7" stroke-width="1.2" stroke-dasharray="4,3"/>
+</svg>
+</div>
 <p>📖 <strong>函数在一点的极限</strong>（直观版）：</p>
 <blockquote>当 $x$ 无限接近（但不等于）$x_0$ 时，$f(x)$ 无限接近的值，叫做 <strong>$f(x)$ 在 $x_0$ 处的极限</strong>。</blockquote>
 <p>记作：</p>
 <blockquote>$$\lim_{x \to x_0} f(x) = L$$</blockquote>
 <hr>
 <h2>二、第一个例子：$f(x) = 2x$</h2>
-<pre><code>
-$$\lim_{x \to 3} 2x = ?$$
+$$\lim_{x \to 3} 2x = \; ?$$
 
-当 $x \to 3$：$x = 2.9 \Rightarrow f=5.8$；$x = 2.99 \Rightarrow f=5.98$；$x = 3.01 \Rightarrow f=6.02$
+<p>当 $x \to 3$：$x = 2.9 \Rightarrow f=5.8$；$x = 2.99 \Rightarrow f=5.98$；$x = 3.01 \Rightarrow f=6.02$</p>
+<p>很明显，逼近 $6$。</p>
 
-很明显，逼近 $6$。
-
-答案：$\displaystyle\lim_{x \to 3} 2x = 6$
-</code></pre>
+$$\lim_{x \to 3} 2x = 6$$
 <p>当函数在 $x_0$ 处<strong>连续</strong>时（不出现断点），极限就等于函数值：<strong>$\displaystyle\lim_{x \to x_0} f(x) = f(x_0)$</strong>。</p>
 <p>对于 $2x$ 这种多项式函数，直接代入就够了。</p>
 <hr>
 <h2>三、一个有趣的例子：$f(x) = \dfrac{x^2 - 1}{x - 1}$</h2>
 <p>直接代入 $x = 1$ 会怎样？</p>
-<pre><code>
 $$f(1) = \frac{1^2 - 1}{1 - 1} = \frac{0}{0} \quad \leftarrow \text{无意义！}$$
-</code></pre>
 <p>但在 $x \neq 1$ 时，我们可以化简：</p>
-<pre><code>
 $$\frac{x^2 - 1}{x - 1} = \frac{(x - 1)(x + 1)}{x - 1} = x + 1 \quad (\text{当 } x \neq 1)$$
-</code></pre>
 <p>所以当 $x$ 趋近于 $1$ 时：</p>
 <table>
-<thead><tr><th>$x$</th><th>$0.9$</th><th>$0.99$</th><th>$0.999$</th><th>$\to 1 \leftarrow$</th><th>$1.001$</th><th>$1.01$</th><th>$1.1$</th></tr></thead>
 <thead><tr><th>$x$</th><th>$0.9$</th><th>$0.99$</th><th>$0.999$</th><th>$\to 1 \leftarrow$</th><th>$1.001$</th><th>$1.01$</th><th>$1.1$</th></tr></thead>
 <tbody>
 <tr><td>$f(x) = x+1$</td><td>$1.9$</td><td>$1.99$</td><td>$1.999$</td><td>$\to 2 \leftarrow$</td><td>$2.001$</td><td>$2.01$</td><td>$2.1$</td></tr>
@@ -99,34 +127,54 @@ $$\frac{x^2 - 1}{x - 1} = \frac{(x - 1)(x + 1)}{x - 1} = x + 1 \quad (\text{当 
 <li><strong>右极限</strong>：从右边（比 $x_0$ 大）趋近，记作 $\displaystyle\lim_{x \to x_0^+} f(x) = L^+$</li>
 </ul>
 <p>🔑 <strong>极限存在的条件</strong>：左极限 $=$ 右极限。</p>
-<pre><code>
-  如果有断点：
-    y
-    │    ·
-   3│   ·   ← 从右边趋近于 $3$
-   2│
-   1│  ·    ← 从左边趋近于 $1$
-    │
-    └────┼────→ x
-        $x_0$
- 左右极限不相等 → 极限不存在
-</code></pre>
+<div style="text-align:center;margin:1.5em 0;">
+<svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#cdd6f4"/>
+    </marker>
+  </defs>
+  <!-- 坐标轴 -->
+  <line x1="60" y1="20" x2="60" y2="200" stroke="#585b70" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <line x1="60" y1="180" x2="330" y2="180" stroke="#585b70" stroke-width="1.5" marker-end="url(#arrow2)"/>
+  <text x="70" y="28" fill="#cdd6f4" font-size="16" font-style="italic">y</text>
+  <text x="335" y="185" fill="#cdd6f4" font-size="16" font-style="italic">x</text>
+  <!-- y 刻度 -->
+  <line x1="54" y1="130" x2="66" y2="130" stroke="#585b70" stroke-width="1"/>
+  <text x="48" y="135" fill="#a6adc8" font-size="13" text-anchor="end">1</text>
+  <line x1="54" y1="80" x2="66" y2="80" stroke="#585b70" stroke-width="1"/>
+  <text x="48" y="85" fill="#a6adc8" font-size="13" text-anchor="end">3</text>
+  <!-- x₀ 位置 -->
+  <line x1="180" y1="176" x2="180" y2="186" stroke="#585b70" stroke-width="1"/>
+  <text x="180" y="198" fill="#f38ba8" font-size="14" text-anchor="middle" font-style="italic">x</text>
+  <text x="180" y="210" fill="#f38ba8" font-size="11" text-anchor="middle">₀</text>
+  <!-- 虚线 x=x₀ -->
+  <line x1="180" y1="60" x2="180" y2="178" stroke="#585b70" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- 左边路径：趋近于 y=1 -->
+  <line x1="60" y1="130" x2="178" y2="130" stroke="#89dceb" stroke-width="2" stroke-dasharray="3,3"/>
+  <circle cx="176" cy="130" r="4" fill="#89dceb"/>
+  <!-- 右边路径：趋近于 y=3 -->
+  <line x1="182" y1="80" x2="310" y2="80" stroke="#f9e2af" stroke-width="2" stroke-dasharray="3,3"/>
+  <circle cx="184" cy="80" r="4" fill="#f9e2af"/>
+  <!-- 标注 -->
+  <text x="125" y="118" fill="#89dceb" font-size="13" text-anchor="middle">从左边趋近于 1</text>
+  <text x="240" y="68" fill="#f9e2af" font-size="13" text-anchor="middle">从右边趋近于 3</text>
+  <!-- 结论 -->
+  <text x="190" y="42" fill="#f38ba8" font-size="14" font-weight="bold">左右极限不相等 → 极限不存在</text>
+</svg>
+</div>
 <hr>
 <h2>五、无穷极限</h2>
 <h3>情况 1：$x \to \infty$</h3>
 <p>当 $x$ 无限增大时，$f(x)$ 趋近于什么？</p>
-<pre><code>
 $$\lim_{x \to \infty} \frac{1}{x} = 0 \quad (\text{因为分母越大，分数越小})$$
 
 $$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right) = 1$$
 
 $$\lim_{x \to \infty} x^2 = \infty \quad (\text{不存在有限极限})$$
-</code></pre>
 <h3>情况 2：$f(x) \to \infty$</h3>
 <p>当 $x$ 趋近于某点时，$f(x)$ 无限增大。</p>
-<pre><code>
 $$\lim_{x \to 0} \frac{1}{x^2} = \infty \quad (\text{当 } x \to 0，\frac{1}{x^2} \text{ 无限变大})$$
-</code></pre>
 <hr>
 <h2>六、极限的四则运算</h2>
 <p>和数列一样，如果 $\displaystyle\lim_{x \to c} f(x) = A$ 且 $\displaystyle\lim_{x \to c} g(x) = B$（都有限），那么：</p>
@@ -136,27 +184,39 @@ $$\lim_{x \to 0} \frac{1}{x^2} = \infty \quad (\text{当 } x \to 0，\frac{1}{x^
 <li>$\displaystyle\lim_{x \to c} \dfrac{f(x)}{g(x)} = \dfrac{A}{B}$（$B \neq 0$）</li>
 </ul>
 <hr>
-<h2>七、两个极其重要的极限</h2>
+<h2>七、夹逼定理</h2>
+<p>有时候一个极限既不能直接代入，也不能因式分解，这时可以用<strong>夹逼定理</strong>（也叫"夹逼准则"或"三明治定理"）。</p>
+<p>📖 <strong>夹逼定理</strong>：</p>
+<blockquote>
+如果在 $x_0$ 附近（去掉 $x_0$ 本身），始终有 $$g(x) \le f(x) \le h(x)$$
+且 $\displaystyle\lim_{x \to x_0} g(x) = \displaystyle\lim_{x \to x_0} h(x) = L$，<br>
+那么 $\displaystyle\lim_{x \to x_0} f(x) = L$。
+</blockquote>
+<p>💡 <strong>形象理解</strong>：$f(x)$ 被夹在两个趋向同一个值 $L$ 的函数之间，就只能跟着趋向 $L$——就像三明治里的馅料被两片面包夹住，无处可逃。</p>
+<h3>经典例子：证明 $\displaystyle\lim_{x \to 0} x^2 \sin\dfrac{1}{x} = 0$</h3>
+<p>$\sin\dfrac{1}{x}$ 在 $x \to 0$ 时一直震荡（根本不收敛），但它的绝对值不超过 $1$：</p>
+$$-1 \le \sin\frac{1}{x} \le 1$$
+<p>两边乘以 $x^2$（$x^2 \ge 0$，不等号方向不变）：</p>
+$$-x^2 \le x^2 \sin\frac{1}{x} \le x^2$$
+<p>而 $\displaystyle\lim_{x \to 0}(-x^2) = 0$ 且 $\displaystyle\lim_{x \to 0} x^2 = 0$，由夹逼定理：</p>
+$$\lim_{x \to 0} x^2 \sin\frac{1}{x} = 0 \; \checkmark$$
+<p>⚠️ <strong>注意</strong>：夹逼定理要求你<strong>找到两个好的界</strong>，这有时需要一点技巧。但只要上下界都趋向同一个值，结论就成立。</p>
+<hr>
+<h2>八、两个极其重要的极限</h2>
 <p>这两个极限你会反复用到。先记住它们：</p>
 <h3>重要极限 1：</h3>
-<pre><code>
 $$\lim_{x \to 0} \frac{\sin x}{x} = 1$$
-</code></pre>
 <p>直观理解：当角度 $x$ 非常非常小时（用弧度制），$\sin x$ 约等于 $x$。</p>
-<pre><code>
-$x = 0.1 \Rightarrow \sin(0.1) \approx 0.09983 \Rightarrow \dfrac{\sin(0.1)}{0.1} \approx 0.9983$
-$x = 0.01 \Rightarrow \sin(0.01) \approx 0.0099998 \Rightarrow \text{ratio} \approx 0.99998$
-</code></pre>
+$$x = 0.1 \Rightarrow \sin(0.1) \approx 0.09983 \Rightarrow \frac{\sin(0.1)}{0.1} \approx 0.9983$$
+$$x = 0.01 \Rightarrow \sin(0.01) \approx 0.0099998 \Rightarrow \text{ratio} \approx 0.99998$$
 <p>越接近 $0$，比例越接近 $1$。</p>
 <h3>重要极限 2：</h3>
-<pre><code>
 $$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e \approx 2.71828...$$
-</code></pre>
 <p>这个极限定义了一个极其重要的常数：<strong>$e$</strong>。</p>
 <p>你不会在初一课本上见到它，但它会在微积分中无处不在。</p>
 <p>直观理解：如果你有 $1$ 元钱，年利率 $100\\%$，但利息是连续复利计算的——一年后你会得到 $e$ 元（约 $2.718$ 元）。</p>
 <hr>
-<h2>八、计算函数极限的简单技巧</h2>
+<h2>九、计算函数极限的简单技巧</h2>
 <p>对于初学者，以下是处理极限的一些"经验法则"：</p>
 <ol>
 <li><strong>先代入试试</strong>：如果代入后得到正常的数，这通常就是极限。</li>
@@ -179,7 +239,7 @@ $$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e \approx 2.71828...$$
 <li>求 $\displaystyle\lim_{x \to \infty} \frac{2x^2 + 3x}{x^2}$</li>
 </ol>
 <details>
-<p><summary>点击查看答案</summary></p>
+<summary>点击查看答案</summary>
 <ol>
 <li>直接代入：$3 \times 1 + 2 = 5$。</li>
 </ol>
@@ -194,7 +254,7 @@ $$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e \approx 2.71828...$$
 </ol>
 </details>
 <hr>
-<p>📝 <strong>下一章</strong>：<a href="./11_导数入门.html">10 导数入门</a></p>
+<p>📝 <strong>下一章</strong>：<a href="./11_导数入门.html">11 导数入门</a></p>
 <div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a> · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./09_数列与极限思维.html">上一章</a> · <a href="./11_导数入门.html">下一章</a></div>
 </div>
 </body>

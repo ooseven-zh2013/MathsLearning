@@ -46,7 +46,7 @@
 <p>如果 <strong>$F'(x) = f(x)$</strong>，那么 <strong>$F(x)$ 就是 $f(x)$ 的一个原函数</strong>。</p>
 <p>换句话说：对 $F$ 求导，得到 $f$。</p>
 <h3>例子：</h3>
-<pre><code>
+
 $f(x) = 2x$
 问：哪个函数求导之后等于 $2x$？
 
@@ -54,15 +54,15 @@ $f(x) = 2x$
 $F'(x) = 2x$ ✓   ← 对了！
 
 所以 $F(x) = x^2$ 是 $f(x) = 2x$ 的一个原函数。
-</code></pre>
+
 <hr>
 <h2>二、一个函数有多少个原函数？</h2>
 <p>接着上面的例子：</p>
-<pre><code>
+
 $F(x) = x^2$       → $F'(x) = 2x$ ✓
 $G(x) = x^2 + 1$   → $G'(x) = 2x$ ✓   （常数导数为 $0$）
 $H(x) = x^2 - 5$   → $H'(x) = 2x$ ✓
-</code></pre>
+
 <p>📖 <strong>结论</strong>：如果 $F(x)$ 是 $f(x)$ 的一个原函数，那么 <strong>$F(x) + C$</strong>（$C$ 是任意常数）都是 $f(x)$ 的原函数。</p>
 <p>💡 为什么？因为 <strong>$(C)' = 0$</strong>，加个常数不影响导数。</p>
 <hr>
@@ -99,11 +99,11 @@ $H(x) = x^2 - 5$   → $H'(x) = 2x$ ✓
 <h3>验证（倒推）：</h3>
 <p>对右边求导： $$\left(\frac{x^{n+1}}{n+1} + C\right)' = \frac{n+1}{n+1} \cdot x^n + 0 = x^n \; \checkmark$$</p>
 <h3>例子：</h3>
-<pre><code>
+
 $\displaystyle\int x^2 dx = \frac{x^3}{3} + C$
 $\displaystyle\int x^7 dx = \frac{x^8}{8} + C$
 $\displaystyle\int x^{-2} dx = \frac{x^{-1}}{-1} + C = -\frac{1}{x} + C$   （$n = -2 \neq -1$，合法）
-</code></pre>
+
 <p>⚠️ <strong>$n = -1$ 的情况</strong>：$\displaystyle\int \frac{1}{x} dx = \ln|x| + C$（这个初一阶段不要求）</p>
 <hr>
 <h2>六、积分的线性性质</h2>
@@ -137,7 +137,7 @@ $\displaystyle\int x^{-2} dx = \frac{x^{-1}}{-1} + C = -\frac{1}{x} + C$   （$n
 <li>验证：对 $\displaystyle\int (3x^2 + 1) dx$ 的结果求导，看是否回到 $3x^2 + 1$。</li>
 </ol>
 <details>
-<p><summary>点击查看答案</summary></p>
+<summary>点击查看答案</summary>
 <ol>
 <li>$\displaystyle\int 4x^3 dx = 4 \cdot \int x^3 dx = 4 \cdot \frac{x^4}{4} + C = x^4 + C$。</li>
 </ol>
@@ -152,7 +152,7 @@ $\displaystyle\int x^{-2} dx = \frac{x^{-1}}{-1} + C = -\frac{1}{x} + C$   （$n
 </ol>
 </details>
 <hr>
-<p>📝 <strong>下一章</strong>：<a href="./17_定积分.html">16 定积分</a></p>
+<p>📝 <strong>下一章</strong>：<a href="./17_定积分.html">17 定积分</a></p>
 <div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a> · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./15_洛必达法则.html">上一章</a> · <a href="./17_定积分.html">下一章</a></div>
 </div>
 </body>

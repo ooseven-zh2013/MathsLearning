@@ -44,19 +44,35 @@
 <hr>
 <h2>一、问题：曲线下面积是多少？</h2>
 <p>看一个具体例子：<strong>$y = x^2$ 和 $x$ 轴在 $[0, 1]$ 区间围成的面积</strong>。</p>
-<pre><code>
-    y
-    ↑
-  1 ·                ·
-    │             *  ← $y = x^2$ 的曲线
-    │           *
-    │         *
-    │       *
-    │     *
-    │   *
-  0 └───────┼────────→ x
-       0       1
-</code></pre>
+<div style="text-align:center;margin:1em 0;">
+<svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="d1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#cdd6f4"/>
+    </marker>
+  </defs>
+  <line x1="50" y1="15" x2="50" y2="200" stroke="#585b70" stroke-width="1.5" marker-end="url(#d1)"/>
+  <line x1="50" y1="180" x2="300" y2="180" stroke="#585b70" stroke-width="1.5" marker-end="url(#d1)"/>
+  <text x="58" y="22" fill="#cdd6f4" font-size="15" font-style="italic">y</text>
+  <text x="305" y="185" fill="#cdd6f4" font-size="15" font-style="italic">x</text>
+  <!-- 刻度 -->
+  <line x1="44" y1="180" x2="56" y2="180" stroke="#585b70" stroke-width="1"/>
+  <text x="38" y="185" fill="#a6adc8" font-size="12" text-anchor="end">0</text>
+  <line x1="44" y1="100" x2="56" y2="100" stroke="#585b70" stroke-width="1"/>
+  <text x="38" y="105" fill="#a6adc8" font-size="12" text-anchor="end">1</text>
+  <line x1="50" y1="176" x2="50" y2="186" stroke="#585b70" stroke-width="1"/>
+  <line x1="175" y1="176" x2="175" y2="186" stroke="#585b70" stroke-width="1"/>
+  <text x="175" y="198" fill="#a6adc8" font-size="12" text-anchor="middle">1</text>
+  <!-- y=x² 曲线 -->
+  <path d="M 50 180 Q 80 180 120 170 Q 155 130 175 100 Q 200 55 240 20" fill="none" stroke="#f38ba8" stroke-width="2.5"/>
+  <!-- 阴影区域 -->
+  <path d="M 50 180 Q 80 180 120 170 Q 155 130 175 100 L 175 180 Z" fill="#f38ba8" opacity="0.15"/>
+  <!-- 标注 -->
+  <text x="95" y="165" fill="#f38ba8" font-size="12" text-anchor="middle">y = x²</text>
+  <text x="115" y="195" fill="#a6adc8" font-size="14" text-anchor="middle">面积 = ?</text>
+  <text x="110" y="148" fill="#cdd6f4" font-size="12" font-style="italic">*</text>
+</svg>
+</div>
 <p>这个面积<strong>不是</strong>矩形，也不是三角形——它是<strong>曲边梯形</strong>。</p>
 <hr>
 <h2>二、思路：切分成无数个小矩形</h2>
@@ -164,7 +180,7 @@
 <li>用定积分表示"$y = 2x$ 在 $[0, 5]$ 上与 $x$ 轴围成的面积"，并算出结果。</li>
 </ol>
 <details>
-<p><summary>点击查看答案</summary></p>
+<summary>点击查看答案</summary>
 <ol>
 <li>原函数：$\displaystyle\int 3x^2 dx = x^3 + C$。$F(4)-F(1) = 64 - 1 = \mathbf{63}$。</li>
 </ol>
@@ -181,7 +197,7 @@
 <p>   （验证：底 $5$ 高 $10$ 的三角形面积 $= \frac{5 \times 10}{2} = 25$ ✓）</p>
 </details>
 <hr>
-<p>📝 <strong>下一章</strong>：<a href="./18_导数与积分的应用.html">17 导数与积分的应用</a></p>
+<p>📝 <strong>下一章</strong>：<a href="./18_导数与积分的应用.html">18 导数与积分的应用</a></p>
 <div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a> · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./16_不定积分.html">上一章</a> · <a href="./18_导数与积分的应用.html">下一章</a></div>
 </div>
 </body>

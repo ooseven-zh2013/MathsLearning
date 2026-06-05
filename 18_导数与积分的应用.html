@@ -55,12 +55,12 @@
 </tbody>
 </table>
 <h3>例子：分析 $f(x) = x^2 - 4x + 3$</h3>
-<pre><code>
+
 $f'(x) = 2x - 4$
 
 当 $2x - 4 > 0 \to x > 2$：$f'(x) > 0$ → 递增
 当 $2x - 4 < 0 \to x < 2$：$f'(x) < 0$ → 递减
-</code></pre>
+
 <p>所以：</p>
 <ul>
 <li>在 $(-\infty, 2)$ 上<strong>递减</strong></li>
@@ -121,17 +121,36 @@ $f'(x) = 2x - 4$
 <h3>2. 两条曲线之间的面积</h3>
 <p>如果有两个函数 $f(x)$ 和 $g(x)$，且 $f(x) \geq g(x)$ 在 $[a, b]$ 上：</p>
 <blockquote>$$\text{面积} = \int_a^b (f(x) - g(x)) dx$$</blockquote>
-<pre><code>
-    y
-    ↑
-    │     f(x)
-    │   ⋂⋯⋯⋅
-    │  /      ← $f(x) - g(x) =$ 两条线之间的距离
-    │ /       
-    │/ g(x)  
-  ──┼───────→ x
-    a       b
-</code></pre>
+<div style="text-align:center;margin:1em 0;">
+<svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="e1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#cdd6f4"/>
+    </marker>
+  </defs>
+  <line x1="50" y1="15" x2="50" y2="200" stroke="#585b70" stroke-width="1.5" marker-end="url(#e1)"/>
+  <line x1="50" y1="180" x2="300" y2="180" stroke="#585b70" stroke-width="1.5" marker-end="url(#e1)"/>
+  <text x="58" y="22" fill="#cdd6f4" font-size="15" font-style="italic">y</text>
+  <text x="305" y="185" fill="#cdd6f4" font-size="15" font-style="italic">x</text>
+  <!-- a, b -->
+  <line x1="90" y1="176" x2="90" y2="186" stroke="#f38ba8" stroke-width="1"/>
+  <text x="90" y="200" fill="#f38ba8" font-size="14" text-anchor="middle" font-style="italic">a</text>
+  <line x1="250" y1="176" x2="250" y2="186" stroke="#f38ba8" stroke-width="1"/>
+  <text x="250" y="200" fill="#f38ba8" font-size="14" text-anchor="middle" font-style="italic">b</text>
+  <!-- f(x) 曲线（上方） -->
+  <path d="M 90 140 Q 150 145 200 110 Q 230 80 250 60" fill="none" stroke="#89dceb" stroke-width="2"/>
+  <text x="280" y="55" fill="#89dceb" font-size="14" font-style="italic">f</text>
+  <text x="288" y="55" fill="#89dceb" font-size="14">(x)</text>
+  <!-- g(x) 曲线（下方） -->
+  <path d="M 90 165 Q 150 160 200 145 Q 230 125 250 100" fill="none" stroke="#f9e2af" stroke-width="2"/>
+  <text x="280" y="98" fill="#f9e2af" font-size="14" font-style="italic">g</text>
+  <text x="288" y="98" fill="#f9e2af" font-size="14">(x)</text>
+  <!-- 阴影区域 -->
+  <path d="M 90 140 Q 150 145 200 110 Q 230 80 250 60 L 250 100 Q 230 125 200 145 Q 150 160 90 165 Z" fill="#cdd6f4" opacity="0.12"/>
+  <!-- 标注 -->
+  <text x="170" y="122" fill="#a6adc8" font-size="12" text-anchor="middle">f(x) − g(x)</text>
+</svg>
+</div>
 <h3>例子：求 $y = x^2$ 和 $y = x$ 在 $[0, 1]$ 之间的面积</h3>
 <p>在 $[0,1]$ 上：$x \geq x^2$（直线在上方）</p>
 <p>$$ \begin{aligned} \text{面积} &= \int_0^1 (x - x^2) dx \\ &= \left(\frac{x^2}{2} - \frac{x^3}{3}\right)\Big|_0^1 \\ &= \left(\frac{1}{2} - \frac{1}{3}\right) - (0 - 0) \\ &= \frac{1}{6} \; \checkmark \end{aligned} $$</p>
@@ -175,7 +194,7 @@ $f'(x) = 2x - 4$
 <li>用导数证明：周长为定值时，矩形中正方形的面积最大。</li>
 </ol>
 <details>
-<p><summary>点击查看答案</summary></p>
+<summary>点击查看答案</summary>
 <ol>
 <li>$f'(x) = 2x - 4$。在 $x = 2$ 时 $f'(2) = 0$。</li>
 </ol>
