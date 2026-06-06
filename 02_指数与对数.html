@@ -160,8 +160,17 @@
       font-style: normal
     }
   </style>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-  <script>window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }, svg: { fontCache: 'global' } };</script>
+
+  
+    
+  
 </head>
 
 <body>
@@ -197,15 +206,10 @@
       <li>$a^{\frac{m}{n}}$：先开 $n$ 次方，再 $m$ 次方；或者反过来，结果一样。</li>
     </ul>
     <p>🔑 <strong>根式与分数指数的转换</strong>：</p>
-    $$
-    \sqrt{a} = a^{\frac{1}{2}}
-    $$$$
-    \sqrt[3]{a} = a^{\frac{1}{3}}
-    $$$$
-    \sqrt{a^3} = a^{\frac{3}{2}}
-    $$$$
-    \frac{1}{\sqrt{a}} = a^{-\frac{1}{2}}
-    $$
+    <p>$$ \sqrt{a} = a^{\frac{1}{2}} $$</p>
+    <p>$$ \sqrt[3]{a} = a^{\frac{1}{3}} $$</p>
+    <p>$$ \sqrt{a^3} = a^{\frac{3}{2}} $$</p>
+    <p>$$ \frac{1}{\sqrt{a}} = a^{-\frac{1}{2}} $$</p>
     <p>⚠️ <strong>注意</strong>：当 $n$ 是偶数时，$\sqrt[n]{a^n} = |a|$（不是 $a$！）。</p>
     <p>例如：$\sqrt{(-3)^2} = \sqrt{9} = 3 = |-3|$。</p>
     <p>✅ <strong>检查点</strong>：把 $\sqrt[3]{x^2}$、$\frac{1}{\sqrt{x}}$、$\sqrt{x^3}$ 写成指数形式。</p>
