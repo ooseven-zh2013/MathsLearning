@@ -1,38 +1,165 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>09 数列与极限思维：无限逼近的艺术 — 未花的微积分教程</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-         background:#1e1e2e;color:#cdd6f4;max-width:820px;margin:0 auto;padding:2rem 1.5rem;line-height:1.75}
-    h1{color:#cba6f7;font-size:2rem;border-bottom:2px solid #45475a;padding-bottom:.5rem;margin:2rem 0 1rem}
-    h2{color:#89b4fa;font-size:1.5rem;margin:1.8rem 0 .8rem}
-    h3{color:#a6e3a1;font-size:1.15rem;margin:1.2rem 0 .5rem}
-    p{margin:.7rem 0}
-    strong{color:#f5c2e7}
-    code{background:#313244;padding:.15em .4em;border-radius:4px;font-size:.9em;font-family:"Cascadia Code",Consolas,monospace;color:#fab387}
-    pre{background:#11111b;padding:1rem;border-radius:8px;overflow-x:auto;margin:.8rem 0}
-    pre code{background:none;padding:0;color:#cdd6f4;font-size:.85em}
-    blockquote{border-left:4px solid #cba6f7;padding:.4rem 1rem;margin:.8rem 0;background:#181825;border-radius:0 6px 6px 0;color:#bac2de}
-    hr{border:none;border-top:1px solid #45475a;margin:2rem 0}
-    table{border-collapse:collapse;width:100%;margin:1rem 0}
-    th{background:#313244;color:#cba6f7;padding:.5rem .8rem;text-align:left}
-    td{padding:.4rem .8rem;border-bottom:1px solid #313244}
-    ul,ol{padding-left:1.5rem;margin:.5rem 0}
-    li{margin:.25rem 0}
-    a{color:#89b4fa;text-decoration:none}
-    a:hover{text-decoration:underline}
-    details{margin:.8rem 0;background:#181825;border-radius:8px;padding:.6rem 1rem;border:1px solid #313244}
-    details summary{cursor:pointer;color:#f9e2af;font-weight:bold;padding:.3rem 0}
-    details[open] summary{margin-bottom:.5rem}
-    .nav{border-top:2px solid #45475a;margin-top:3rem;padding-top:1rem;color:#6c7086}
-    .nav a{margin:0 .3rem}
-    .emoji{font-style:normal}
 
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>09 数列与极限思维：无限逼近的艺术 — 未花的微积分教程</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      line-height: 1.75
+    }
+
+    h1 {
+      color: #cba6f7;
+      font-size: 2rem;
+      border-bottom: 2px solid #45475a;
+      padding-bottom: .5rem;
+      margin: 2rem 0 1rem
+    }
+
+    h2 {
+      color: #89b4fa;
+      font-size: 1.5rem;
+      margin: 1.8rem 0 .8rem
+    }
+
+    h3 {
+      color: #a6e3a1;
+      font-size: 1.15rem;
+      margin: 1.2rem 0 .5rem
+    }
+
+    p {
+      margin: .7rem 0
+    }
+
+    strong {
+      color: #f5c2e7
+    }
+
+    code {
+      background: #313244;
+      padding: .15em .4em;
+      border-radius: 4px;
+      font-size: .9em;
+      font-family: "Cascadia Code", Consolas, monospace;
+      color: #fab387
+    }
+
+    pre {
+      background: #11111b;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: .8rem 0
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: #cdd6f4;
+      font-size: .85em
+    }
+
+    blockquote {
+      border-left: 4px solid #cba6f7;
+      padding: .4rem 1rem;
+      margin: .8rem 0;
+      background: #181825;
+      border-radius: 0 6px 6px 0;
+      color: #bac2de
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #45475a;
+      margin: 2rem 0
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0
+    }
+
+    th {
+      background: #313244;
+      color: #cba6f7;
+      padding: .5rem .8rem;
+      text-align: left
+    }
+
+    td {
+      padding: .4rem .8rem;
+      border-bottom: 1px solid #313244
+    }
+
+    ul,
+    ol {
+      padding-left: 1.5rem;
+      margin: .5rem 0
+    }
+
+    li {
+      margin: .25rem 0
+    }
+
+    a {
+      color: #89b4fa;
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    details {
+      margin: .8rem 0;
+      background: #181825;
+      border-radius: 8px;
+      padding: .6rem 1rem;
+      border: 1px solid #313244
+    }
+
+    details summary {
+      cursor: pointer;
+      color: #f9e2af;
+      font-weight: bold;
+      padding: .3rem 0
+    }
+
+    details[open] summary {
+      margin-bottom: .5rem
+    }
+
+    .nav {
+      border-top: 2px solid #45475a;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      color: #6c7086
+    }
+
+    .nav a {
+      margin: 0 .3rem
+    }
+
+    .emoji {
+      font-style: normal
+    }
+  </style>
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
@@ -42,164 +169,270 @@
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
 
-    
+
 
 </head>
+
 <body>
-<div class="container">
-<h1>09 数列与极限思维：无限逼近的艺术</h1>
-<blockquote>这是微积分的核心思想——"无限逼近"。你不用被吓到，我们从一个小故事开始。</blockquote>
-<hr>
-<h2>一、芝诺的难题</h2>
-<p>古希腊哲学家芝诺讲过一个故事：</p>
-<blockquote><strong>"一尺之棰，日取其半，万世不竭。"</strong></blockquote>
-<p>一根一尺长的棍子（棰），每天切一半，永远切不完。</p>
-<ul>
-<li>第 $1$ 天：剩下 $\dfrac{1}{2}$ 尺</li>
-<li>第 $2$ 天：剩下 $\dfrac{1}{4}$ 尺</li>
-<li>第 $3$ 天：剩下 $\dfrac{1}{8}$ 尺</li>
-<li>第 $4$ 天：剩下 $\dfrac{1}{16}$ 尺</li>
-<li>...</li>
-</ul>
-<p>这些数组成一个<strong>数列</strong>：</p>
-<blockquote>$\dfrac{1}{2}, \dfrac{1}{4}, \dfrac{1}{8}, \dfrac{1}{16}, \dfrac{1}{32}, \dots$</blockquote>
-<p>观察这些数：它们<strong>越来越小</strong>，<strong>越来越接近 $0$</strong>，但<strong>永远不会等于 $0$</strong>。</p>
-<p>这就是"极限"的直觉：</p>
-<blockquote>当 $n$ 越来越大时，$\dfrac{1}{2^n}$ 趋近于 $0$。</blockquote>
-<hr>
-<h2>二、数列：一排有序的数</h2>
-<p>📖 <strong>数列</strong>：按照一定顺序排列的一串数。</p>
-<p>用 <strong>$a_n$</strong> 表示第 $n$ 项：</p>
+  <div class="container">
+    <h1>09 数列与极限思维：无限逼近的艺术</h1>
+    <blockquote>这是微积分的核心思想——"无限逼近"。你不用被吓到，我们从一个小故事开始。</blockquote>
+    <hr>
+    <h2>一、芝诺的难题</h2>
+    <p>古希腊哲学家芝诺讲过一个故事：</p>
+    <blockquote><strong>"一尺之棰，日取其半，万世不竭。"</strong></blockquote>
+    <p>一根一尺长的棍子（棰），每天切一半，永远切不完。</p>
+    <ul>
+      <li>第 $1$ 天：剩下 $\dfrac{1}{2}$ 尺</li>
+      <li>第 $2$ 天：剩下 $\dfrac{1}{4}$ 尺</li>
+      <li>第 $3$ 天：剩下 $\dfrac{1}{8}$ 尺</li>
+      <li>第 $4$ 天：剩下 $\dfrac{1}{16}$ 尺</li>
+      <li>...</li>
+    </ul>
+    <p>这些数组成一个<strong>数列</strong>：</p>
+    <blockquote>$\dfrac{1}{2}, \dfrac{1}{4}, \dfrac{1}{8}, \dfrac{1}{16}, \dfrac{1}{32}, \dots$</blockquote>
+    <p>观察这些数：它们<strong>越来越小</strong>，<strong>越来越接近 $0$</strong>，但<strong>永远不会等于 $0$</strong>。</p>
+    <p>这就是"极限"的直觉：</p>
+    <blockquote>当 $n$ 越来越大时，$\dfrac{1}{2^n}$ 趋近于 $0$。</blockquote>
+    <hr>
+    <h2>二、数列：一排有序的数</h2>
+    <p>📖 <strong>数列</strong>：按照一定顺序排列的一串数。</p>
+    <p>用 <strong>$a_n$</strong> 表示第 $n$ 项：</p>
 
-<p style="white-space: pre; margin: .5rem 0;">$a_1 = \dfrac{1}{2}$  （第 $1$ 项）
-$a_2 = \dfrac{1}{4}$  （第 $2$ 项）
-$a_3 = \dfrac{1}{8}$  （第 $3$ 项）
-...</p>
+    <p style="white-space: pre; margin: .5rem 0;">$a_1 = \dfrac{1}{2}$ （第 $1$ 项）
+      $a_2 = \dfrac{1}{4}$ （第 $2$ 项）
+      $a_3 = \dfrac{1}{8}$ （第 $3$ 项）
+      ...</p>
 
-<p style="margin-top: .5rem;">$a_n = \dfrac{1}{2^n}$ （第 $n$ 项，这是通项公式）</p>
+    <p style="margin-top: .5rem;">$a_n = \dfrac{1}{2^n}$ （第 $n$ 项，这是通项公式）</p>
 
-<p>再举几个数列的例子：</p>
-<table>
-<thead><tr><th>数列</th><th>通项公式</th><th>前几项</th></tr></thead>
-<thead><tr><th>数列</th><th>通项公式</th><th>前几项</th></tr></thead>
-<tbody>
-<tr><td>自然数</td><td>$a_n = n$</td><td>$1, 2, 3, 4, 5, \dots$</td></tr>
-<tr><td>偶数</td><td>$a_n = 2n$</td><td>$2, 4, 6, 8, \dots$</td></tr>
-<tr><td>倒数</td><td>$a_n = \dfrac{1}{n}$</td><td>$1, \dfrac{1}{2}, \dfrac{1}{3}, \dfrac{1}{4}, \dots$</td></tr>
-<tr><td>固定值</td><td>$a_n = 3$</td><td>$3, 3, 3, 3, \dots$</td></tr>
-<tr><td>正负交替</td><td>$a_n = (-1)^n$</td><td>$-1, 1, -1, 1, \dots$</td></tr>
-</tbody>
-</table>
-<hr>
-<h2>三、极限的直观定义</h2>
-<p>📖 <strong>数列的极限</strong>（直观版）：当 $n$ 越来越大（趋向无穷大）时，如果数列的项越来越靠近某个固定的数 $L$，我们就说这个数列的<strong>极限是 $L$</strong>。</p>
-<p>记作：</p>
-<blockquote>$$\lim_{n \to \infty} a_n = L$$</blockquote>
-<p>读作："当 $n$ 趋向无穷大时，$a_n$ 的极限等于 $L$"。</p>
-<hr>
-<h2>四、判断极限的简单方法</h2>
-<h3>方法一：感受趋势</h3>
-<p>多看几项，感觉它往哪走。</p>
+    <p>再举几个数列的例子：</p>
+    <table>
+      <thead>
+        <tr>
+          <th>数列</th>
+          <th>通项公式</th>
+          <th>前几项</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th>数列</th>
+          <th>通项公式</th>
+          <th>前几项</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>自然数</td>
+          <td>$a_n = n$</td>
+          <td>$1, 2, 3, 4, 5, \dots$</td>
+        </tr>
+        <tr>
+          <td>偶数</td>
+          <td>$a_n = 2n$</td>
+          <td>$2, 4, 6, 8, \dots$</td>
+        </tr>
+        <tr>
+          <td>倒数</td>
+          <td>$a_n = \dfrac{1}{n}$</td>
+          <td>$1, \dfrac{1}{2}, \dfrac{1}{3}, \dfrac{1}{4}, \dots$</td>
+        </tr>
+        <tr>
+          <td>固定值</td>
+          <td>$a_n = 3$</td>
+          <td>$3, 3, 3, 3, \dots$</td>
+        </tr>
+        <tr>
+          <td>正负交替</td>
+          <td>$a_n = (-1)^n$</td>
+          <td>$-1, 1, -1, 1, \dots$</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h2>三、极限的直观定义</h2>
+    <p>📖 <strong>数列的极限</strong>（直观版）：当 $n$ 越来越大（趋向无穷大）时，如果数列的项越来越靠近某个固定的数 $L$，我们就说这个数列的<strong>极限是 $L$</strong>。</p>
+    <p>记作：</p>
+    <blockquote>$$\lim_{n \to \infty} a_n = L$$</blockquote>
+    <p>读作："当 $n$ 趋向无穷大时，$a_n$ 的极限等于 $L$"。</p>
+    <hr>
+    <h2>四、判断极限的简单方法</h2>
+    <h3>方法一：感受趋势</h3>
+    <p>多看几项，感觉它往哪走。</p>
 
-<p style="margin: .5rem 0;">数列：$\dfrac{1}{n}$ → $1, \dfrac{1}{2}, \dfrac{1}{3}, \dfrac{1}{4}, \dfrac{1}{100}, \dots$</p>
-<p style="margin: .5rem 0;">趋势：越来越接近 $0$</p>
-<p style="margin: .5rem 0;">结论：$\displaystyle\lim_{n \to \infty} \frac{1}{n} = 0$</p>
+    <p style="margin: .5rem 0;">数列：$\dfrac{1}{n}$ → $1, \dfrac{1}{2}, \dfrac{1}{3}, \dfrac{1}{4}, \dfrac{1}{100}, \dots$
+    </p>
+    <p style="margin: .5rem 0;">趋势：越来越接近 $0$</p>
+    <p style="margin: .5rem 0;">结论：$\displaystyle\lim_{n \to \infty} \frac{1}{n} = 0$</p>
 
-<h3>方法二：分子分母同时除以最高次项</h3>
+    <h3>方法二：分子分母同时除以最高次项</h3>
 
-求 $\displaystyle\lim_{n \to \infty} \frac{n+1}{n}$
+    求 $\displaystyle\lim_{n \to \infty} \frac{n+1}{n}$
 
-$$\frac{n+1}{n} = \frac{1 + \frac{1}{n}}{1}$$
+    $$\frac{n+1}{n} = \frac{1 + \frac{1}{n}}{1}$$
 
-当 $n \to \infty$ 时，$\dfrac{1}{n} \to 0$
+    当 $n \to \infty$ 时，$\dfrac{1}{n} \to 0$
 
-所以 $\displaystyle\lim_{n \to \infty} \frac{n+1}{n} = \frac{1+0}{1} = 1$
+    所以 $\displaystyle\lim_{n \to \infty} \frac{n+1}{n} = \frac{1+0}{1} = 1$
 
 
-再试一个：$\displaystyle\lim_{n \to \infty} \frac{2n+3}{n}$
+    再试一个：$\displaystyle\lim_{n \to \infty} \frac{2n+3}{n}$
 
-$$\frac{2n+3}{n} = 2 + \frac{3}{n}$$
+    $$\frac{2n+3}{n} = 2 + \frac{3}{n}$$
 
-当 $n \to \infty$，$\dfrac{3}{n} \to 0$
+    当 $n \to \infty$，$\dfrac{3}{n} \to 0$
 
-所以 $\displaystyle\lim_{n \to \infty} \frac{2n+3}{n} = 2$
+    所以 $\displaystyle\lim_{n \to \infty} \frac{2n+3}{n} = 2$
 
-<h3>方法三：比较"增长的速度"</h3>
+    <h3>方法三：比较"增长的速度"</h3>
 
-$$\lim_{n \to \infty} \frac{n^2+1}{n^2} = \lim_{n \to \infty} \left(1 + \frac{1}{n^2}\right) = 1$$
+    $$\lim_{n \to \infty} \frac{n^2+1}{n^2} = \lim_{n \to \infty} \left(1 + \frac{1}{n^2}\right) = 1$$
 
-<p>💡 <strong>核心技巧</strong>：分子分母同除以<strong>最高次幂</strong>，让无穷大的部分变成"$1$"，再把趋向于 $0$ 的部分扔掉。</p>
-<hr>
-<h2>五、几个重要的极限结果</h2>
-<table>
-<thead><tr><th>数列</th><th>极限</th><th>直观理解</th></tr></thead>
-<thead><tr><th>数列</th><th>极限</th><th>直观理解</th></tr></thead>
-<tbody>
-<tr><td>$\dfrac{1}{n}$</td><td>$0$</td><td>分母越大，分数越小</td></tr>
-<tr><td>$c$（$c$ 是常数）</td><td>$c$</td><td>不变就是极限</td></tr>
-<tr><td>$\dfrac{1}{n^2}$</td><td>$0$</td><td>比 $\dfrac{1}{n}$ 收敛得更快</td></tr>
-<tr><td>$\sqrt{n+1}-\sqrt{n}$</td><td>$0$</td><td>两者差别越来越小</td></tr>
-<tr><td>$(-1)^n$</td><td>不存在！</td><td>在 $1$ 和 $-1$ 之间来回跳</td></tr>
-</tbody>
-</table>
-<p>⚠️ 不是所有数列都有极限！如果数列不趋向于任何固定值（如在两数之间震荡），则极限<strong>不存在</strong>。</p>
-<hr>
-<h2>六、无穷大与无穷小</h2>
-<p>📖 <strong>无穷大</strong>（记为 $\infty$）：不是一个数，而是表示"越来越大、没有上限"的状态。</p>
-<p>📖 <strong>无穷小</strong>：极限为 $0$ 的量。它也不是"一个数"，而是一种"趋近于 $0$ 的趋势"。</p>
-<p>有几点容易搞混：</p>
-<ol>
-<li><strong>$\infty$ 不是数</strong>。你不能做 $\infty + 1$ 这样的运算（严格来说）。</li>
-<li><strong>无穷小 $\neq 0$</strong>。$\dfrac{1}{n}$ 是无穷小（趋近于 $0$），但对于任何有限的 $n$，它都不等于 $0$。</li>
-<li><strong>无穷多个无穷小的和不一定无穷小</strong>。把 $n$ 个 $\dfrac{1}{n}$ 加起来 $= 1$，不是无穷小。</li>
-</ol>
-<p>在初学阶段，你可以<strong>把 $\infty$ 当成"一个超级大的数"来思考，用直觉处理</strong>，但记住严格定义其实是用极限语言描述的。</p>
-<hr>
-<h2>七、极限的四则运算</h2>
-<p>如果 $\displaystyle\lim_{n \to \infty} a_n = A$，$\displaystyle\lim_{n \to \infty} b_n = B$（两者都存在），那么：</p>
-<table>
-<thead><tr><th>运算</th><th>规则</th></tr></thead>
-<thead><tr><th>运算</th><th>规则</th></tr></thead>
-<tbody>
-<tr><td>加法</td><td>$\displaystyle\lim_{n \to \infty} (a_n + b_n) = A + B$</td></tr>
-<tr><td>减法</td><td>$\displaystyle\lim_{n \to \infty} (a_n - b_n) = A - B$</td></tr>
-<tr><td>乘法</td><td>$\displaystyle\lim_{n \to \infty} (a_n \times b_n) = A \times B$</td></tr>
-<tr><td>除法</td><td>$\displaystyle\lim_{n \to \infty} \left(\dfrac{a_n}{b_n}\right) = \dfrac{A}{B}$（只要 $B \neq 0$）</td></tr>
-<tr><td>常数倍</td><td>$\displaystyle\lim_{n \to \infty} (c \times a_n) = c \times A$</td></tr>
-</tbody>
-</table>
-<p>这看起来和普通运算一样。但有一个大前提：<strong>$A$ 和 $B$ 必须都存在（是有限的数）</strong>。</p>
-<hr>
-<h2>八、极限思想在几何中的体现</h2>
-<p>你学全等三角形时，知道了"边边边"判定的严格性。现在换个角度：</p>
-<p>💡 如果把一个三角形的一条边<strong>缩短一点点</strong>，它就不再和原来的全等——但它们"几乎全等"。</p>
-<p>这种"无限趋近但不等于"的思维，在<strong>相似三角形</strong>和后来的<strong>积分</strong>中都会用到。</p>
-<hr>
-<h2>✅ 检查点</h2>
-<ol>
-<li>数列 $2, 4, 8, 16, 32, \dots$ 的极限存在吗？为什么？</li>
-<li>求 $\displaystyle\lim_{n \to \infty} \frac{3n-1}{n+2}$。</li>
-<li>求 $\displaystyle\lim_{n \to \infty} \frac{5}{n^2}$。</li>
-<li>判断：如果 $\displaystyle\lim_{n \to \infty} a_n = 0$，那么 $a_n$ 的所有项都等于 $0$。对吗？</li>
-</ol>
-<details>
-<summary>点击查看答案</summary>
-<ol>
-<li>不存在。数列在无限增大，不趋向于任何有限值。</li>
-</ol>
-<ol>
-<li>分子分母同除以 $n$：$\dfrac{3-\frac{1}{n}}{1+\frac{2}{n}}$。当 $n \to \infty$，$\dfrac{1}{n} \to 0$，$\dfrac{2}{n} \to 0$。所以极限 $= \dfrac{3}{1} = 3$。</li>
-</ol>
-<ol>
-<li>$\displaystyle\lim_{n \to \infty} \frac{5}{n^2} = 5 \times \lim_{n \to \infty} \frac{1}{n^2} = 5 \times 0 = 0$。</li>
-</ol>
-<ol>
-<li>错！例如 $a_n = \dfrac{1}{n}$，极限是 $0$，但没有任何一项等于 $0$。极限描述的是"趋势"，不是"到达"。</li>
-</ol>
-</details>
-<hr>
-<p>📝 <strong>下一章</strong>：<a href="./10_函数的极限.html">10 函数的极限</a></p>
-<div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a> · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./08_函数的概念深化.html">上一章</a> · <a href="./10_函数的极限.html">下一章</a></div>
-</div>
+    <p>💡 <strong>核心技巧</strong>：分子分母同除以<strong>最高次幂</strong>，让无穷大的部分变成"$1$"，再把趋向于 $0$ 的部分扔掉。</p>
+    <hr>
+    <h2>五、几个重要的极限结果</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>数列</th>
+          <th>极限</th>
+          <th>直观理解</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th>数列</th>
+          <th>极限</th>
+          <th>直观理解</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$\dfrac{1}{n}$</td>
+          <td>$0$</td>
+          <td>分母越大，分数越小</td>
+        </tr>
+        <tr>
+          <td>$c$（$c$ 是常数）</td>
+          <td>$c$</td>
+          <td>不变就是极限</td>
+        </tr>
+        <tr>
+          <td>$\dfrac{1}{n^2}$</td>
+          <td>$0$</td>
+          <td>比 $\dfrac{1}{n}$ 收敛得更快</td>
+        </tr>
+        <tr>
+          <td>$\sqrt{n+1}-\sqrt{n}$</td>
+          <td>$0$</td>
+          <td>两者差别越来越小</td>
+        </tr>
+        <tr>
+          <td>$(-1)^n$</td>
+          <td>不存在！</td>
+          <td>在 $1$ 和 $-1$ 之间来回跳</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>⚠️ 不是所有数列都有极限！如果数列不趋向于任何固定值（如在两数之间震荡），则极限<strong>不存在</strong>。</p>
+    <hr>
+    <h2>六、无穷大与无穷小</h2>
+    <p>📖 <strong>无穷大</strong>（记为 $\infty$）：不是一个数，而是表示"越来越大、没有上限"的状态。</p>
+    <p>📖 <strong>无穷小</strong>：极限为 $0$ 的量。它也不是"一个数"，而是一种"趋近于 $0$ 的趋势"。</p>
+    <p>有几点容易搞混：</p>
+    <ol>
+      <li><strong>$\infty$ 不是数</strong>。你不能做 $\infty + 1$ 这样的运算（严格来说）。</li>
+      <li><strong>无穷小 $\neq 0$</strong>。$\dfrac{1}{n}$ 是无穷小（趋近于 $0$），但对于任何有限的 $n$，它都不等于 $0$。</li>
+      <li><strong>无穷多个无穷小的和不一定无穷小</strong>。把 $n$ 个 $\dfrac{1}{n}$ 加起来 $= 1$，不是无穷小。</li>
+    </ol>
+    <p>在初学阶段，你可以<strong>把 $\infty$ 当成"一个超级大的数"来思考，用直觉处理</strong>，但记住严格定义其实是用极限语言描述的。</p>
+    <hr>
+    <h2>七、极限的四则运算</h2>
+    <p>如果 $\displaystyle\lim_{n \to \infty} a_n = A$，$\displaystyle\lim_{n \to \infty} b_n = B$（两者都存在），那么：</p>
+    <table>
+      <thead>
+        <tr>
+          <th>运算</th>
+          <th>规则</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th>运算</th>
+          <th>规则</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>加法</td>
+          <td>$\displaystyle\lim_{n \to \infty} (a_n + b_n) = A + B$</td>
+        </tr>
+        <tr>
+          <td>减法</td>
+          <td>$\displaystyle\lim_{n \to \infty} (a_n - b_n) = A - B$</td>
+        </tr>
+        <tr>
+          <td>乘法</td>
+          <td>$\displaystyle\lim_{n \to \infty} (a_n \times b_n) = A \times B$</td>
+        </tr>
+        <tr>
+          <td>除法</td>
+          <td>$\displaystyle\lim_{n \to \infty} \left(\dfrac{a_n}{b_n}\right) = \dfrac{A}{B}$（只要 $B \neq 0$）</td>
+        </tr>
+        <tr>
+          <td>常数倍</td>
+          <td>$\displaystyle\lim_{n \to \infty} (c \times a_n) = c \times A$</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>这看起来和普通运算一样。但有一个大前提：<strong>$A$ 和 $B$ 必须都存在（是有限的数）</strong>。</p>
+    <hr>
+    <h2>八、极限思想在几何中的体现</h2>
+    <p>你学全等三角形时，知道了"边边边"判定的严格性。现在换个角度：</p>
+    <p>💡 如果把一个三角形的一条边<strong>缩短一点点</strong>，它就不再和原来的全等——但它们"几乎全等"。</p>
+    <p>这种"无限趋近但不等于"的思维，在<strong>相似三角形</strong>和后来的<strong>积分</strong>中都会用到。</p>
+    <hr>
+    <h2>✅ 检查点</h2>
+    <ol>
+      <li>数列 $2, 4, 8, 16, 32, \dots$ 的极限存在吗？为什么？</li>
+      <li>求 $\displaystyle\lim_{n \to \infty} \frac{3n-1}{n+2}$。</li>
+      <li>求 $\displaystyle\lim_{n \to \infty} \frac{5}{n^2}$。</li>
+      <li>判断：如果 $\displaystyle\lim_{n \to \infty} a_n = 0$，那么 $a_n$ 的所有项都等于 $0$。对吗？</li>
+    </ol>
+    <details>
+      <summary>点击查看答案</summary>
+      <ol>
+        <li>不存在。数列在无限增大，不趋向于任何有限值。</li>
+      </ol>
+      <ol>
+        <li>分子分母同除以 $n$：$\dfrac{3-\frac{1}{n}}{1+\frac{2}{n}}$。当 $n \to \infty$，$\dfrac{1}{n} \to 0$，$\dfrac{2}{n} \to
+          0$。所以极限 $= \dfrac{3}{1} = 3$。</li>
+      </ol>
+      <ol>
+        <li>$\displaystyle\lim_{n \to \infty} \frac{5}{n^2} = 5 \times \lim_{n \to \infty} \frac{1}{n^2} = 5 \times 0 =
+          0$。</li>
+      </ol>
+      <ol>
+        <li>错！例如 $a_n = \dfrac{1}{n}$，极限是 $0$，但没有任何一项等于 $0$。极限描述的是"趋势"，不是"到达"。</li>
+      </ol>
+    </details>
+    <hr>
+    <p>📝 <strong>下一章</strong>：<a href="./10_函数的极限.html">10 函数的极限</a></p>
+    <div class="nav"><a href="index.html">目录</a> · <a href="./01_有理数与实数.html">01_有理数与实数</a> · <a
+        href="./02_指数与对数.html">02_指数与对数</a> · <a href="./03_命题与逻辑.html">03_命题与逻辑</a> · <a
+        href="./04_集合论基础.html">04_集合论基础</a> · <a href="./05_坐标与图像.html">05_坐标与图像</a> · <a
+        href="./06_一次函数.html">06_一次函数</a> · <a href="./07_二次函数.html">07_二次函数</a> · <a
+        href="./08_函数的概念深化.html">08_函数的概念深化</a> · <a href="./09_数列与极限思维.html">09_数列与极限思维</a> · <a
+        href="./10_函数的极限.html">10_函数的极限</a> · <a href="./11_导数入门.html">11_导数入门</a> · <a
+        href="./12_求导法则.html">12_求导法则</a> · <a href="./13_三角函数基础.html">13_三角函数基础</a> · <a
+        href="./14_三角恒等变换.html">14_三角恒等变换</a> · <a href="./15_洛必达法则.html">15_洛必达法则</a> · <a
+        href="./16_不定积分.html">16_不定积分</a> · <a href="./17_定积分.html">17_定积分</a> · <a
+        href="./18_导数与积分的应用.html">18_导数与积分的应用</a> · <a href="./19_反常积分.html">19_反常积分</a> · <a
+        href="./20_二重积分.html">20_二重积分</a> · <a href="./21_三重积分.html">21_三重积分</a> · <a href="./22_曲线积分.html">22_曲线积分</a>
+      · <a href="./23_曲面积分.html">23_曲面积分</a> · <a href="./08_函数的概念深化.html">上一章</a> · <a href="./10_函数的极限.html">下一章</a>
+    </div>
+  </div>
 </body>
+
 </html>
