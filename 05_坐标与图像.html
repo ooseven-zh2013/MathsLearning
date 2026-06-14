@@ -431,7 +431,7 @@
         <rect x="60" y="30" width="220" height="190" fill="#181825" rx="4" />
         <!-- 垂直网格线 (x=1, x=2) -->
         <line x1="140" y1="30" x2="140" y2="220" stroke="#313244" stroke-width="0.5" stroke-dasharray="3,3" />
-        <line x1="220" y1="30" x2="220" y2="220" stroke="#313244" stroke-width="0.5" stroke-dasharray="3,3" />
+        <line x1="200" y1="30" x2="200" y2="220" stroke="#313244" stroke-width="0.5" stroke-dasharray="3,3" />
         <!-- 水平网格线 (y=1,2,3,4) -->
         <line x1="60" y1="180" x2="280" y2="180" stroke="#313244" stroke-width="0.5" stroke-dasharray="3,3" />
         <line x1="60" y1="140" x2="280" y2="140" stroke="#313244" stroke-width="0.5" stroke-dasharray="3,3" />
@@ -462,18 +462,31 @@
           fill="#a6adc8" font-size="12" text-anchor="middle">0</text>
         <line x1="140" y1="216" x2="140" y2="224" stroke="#585b70" stroke-width="1" /><text x="140" y="240"
           fill="#a6adc8" font-size="12" text-anchor="middle">1</text>
-        <line x1="220" y1="216" x2="220" y2="224" stroke="#585b70" stroke-width="1" /><text x="220" y="240"
+        <line x1="200" y1="216" x2="200" y2="224" stroke="#585b70" stroke-width="1" /><text x="200" y="240"
           fill="#a6adc8" font-size="12" text-anchor="middle">2</text>
-        <!-- 曲线 y = x² (精确二次贝塞尔，过 (0,0), (1,1), (2,4)) -->
-        <path d="M 80 220 Q 120 220 160 180 Q 200 140 240 60" fill="none" stroke="#89dceb" stroke-width="2.5" />
+        <!-- 曲线 y = x² (JS 密集采样，过 (0,0), (1,1), (2,4)) -->
+        <polyline id="s05-curve" fill="none" stroke="#89dceb" stroke-width="2.5" />
+        <script>
+          (function() {
+            var ox = 80, oy = 220, sx = 60, sy = 40;
+            var pts = [];
+            for (var i = 0; i <= 100; i++) {
+              var x = i / 50; /* 0..2, step 0.02 */
+              var px = ox + x * sx;
+              var py = oy - x * x * sy;
+              pts.push(px.toFixed(1) + ',' + py.toFixed(1));
+            }
+            document.getElementById('s05-curve').setAttribute('points', pts.join(' '));
+          })();
+        </script>
         <!-- 数据点 -->
-        <circle cx="160" cy="180" r="4" fill="#f9e2af" />
-        <circle cx="220" cy="60" r="5" fill="#f5c2e7" />
+        <circle cx="140" cy="180" r="4" fill="#f9e2af" />
+        <circle cx="200" cy="60" r="5" fill="#f5c2e7" />
         <!-- 标注 -->
-        <text x="230" y="55" fill="#f5c2e7" font-size="13">(2, 4)</text>
-        <text x="172" y="172" fill="#f9e2af" font-size="12">(1, 1)</text>
+        <text x="210" y="55" fill="#f5c2e7" font-size="13">(2, 4)</text>
+        <text x="148" y="172" fill="#f9e2af" font-size="12">(1, 1)</text>
         <!-- 趋势箭头虚线 -->
-        <line x1="260" y1="45" x2="230" y2="65" stroke="#cdd6f4" stroke-width="1.2" stroke-dasharray="4,3" />
+        <line x1="230" y1="45" x2="207" y2="58" stroke="#cdd6f4" stroke-width="1.2" stroke-dasharray="4,3" />
         <text x="265" y="40" fill="#89dceb" font-size="13">← 这条线一直在向上走</text>
       </svg>
     </div>

@@ -382,7 +382,20 @@
           <line x1="420" y1="170" x2="420" y2="35" stroke="#45475a" stroke-width="1" />
           <text x="410" y="45" fill="#cdd6f4" font-size="10">y</text>
           <text x="585" y="185" fill="#cdd6f4" font-size="10">x</text>
-          <path d="M445 145 Q500 40 555 145" stroke="#a6e3a1" stroke-width="2" fill="none" stroke-linecap="round" />
+          <polyline id="s08-curve" stroke="#a6e3a1" stroke-width="2" fill="none" stroke-linecap="round" />
+          <script>
+            (function() {
+              var vx = 500, vy = 40, a = 105 / (55 * 55);
+              var pts = [];
+              for (var i = 0; i <= 100; i++) {
+                var x = 445 + i / 100 * 110; /* 445..555 */
+                var px = x;
+                var py = a * (x - vx) * (x - vx) + vy;
+                pts.push(px.toFixed(1) + ',' + py.toFixed(1));
+              }
+              document.getElementById('s08-curve').setAttribute('points', pts.join(' '));
+            })();
+          </script>
         </svg>
         <h3>例子：</h3>
         <ul>

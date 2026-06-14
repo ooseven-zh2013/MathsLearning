@@ -199,11 +199,32 @@
         <line x1="50" y1="176" x2="50" y2="186" stroke="#585b70" stroke-width="1" />
         <line x1="175" y1="176" x2="175" y2="186" stroke="#585b70" stroke-width="1" />
         <text x="175" y="198" fill="#a6adc8" font-size="12" text-anchor="middle">1</text>
-        <!-- y=x² 曲线 -->
-        <path d="M 50 180 Q 80 180 120 170 Q 155 130 175 100 Q 200 55 240 20" fill="none" stroke="#f38ba8"
-          stroke-width="2.5" />
+        <!-- y=x² 曲线 (JS 密集采样) -->
+        <polyline id="s17-curve" fill="none" stroke="#f38ba8" stroke-width="2.5" />
         <!-- 阴影区域 -->
-        <path d="M 50 180 Q 80 180 120 170 Q 155 130 175 100 L 175 180 Z" fill="#f38ba8" opacity="0.15" />
+        <polygon id="s17-shadow" fill="#f38ba8" opacity="0.15" />
+        <script>
+          (function() {
+            var ox = 50, oy = 180, sx = 125, sy = 80;
+            var pts = [], shadowPts = [];
+            /* 曲线: x ∈ [0, 1.5] 曲线延伸 */
+            for (var i = 0; i <= 75; i++) {
+              var x = i / 50; /* 0..1.5, step 0.02 */
+              var px = ox + x * sx;
+              var py = oy - x * x * sy;
+              pts.push(px.toFixed(1) + ',' + py.toFixed(1));
+            }
+            /* 阴影: 仅 x ∈ [0, 1], 沿曲线, 然后下到 x 轴, 沿 x 轴回到原点 */
+            for (var j = 0; j <= 50; j++) {
+              var xj = j / 50; /* 0..1 */
+              shadowPts.push((ox + xj * sx).toFixed(1) + ',' + (oy - xj * xj * sy).toFixed(1));
+            }
+            shadowPts.push('175,180');
+            shadowPts.push('50,180');
+            document.getElementById('s17-curve').setAttribute('points', pts.join(' '));
+            document.getElementById('s17-shadow').setAttribute('points', shadowPts.join(' '));
+          })();
+        </script>
         <!-- 标注 -->
         <text x="95" y="165" fill="#f38ba8" font-size="12" text-anchor="middle">y = x²</text>
         <text x="115" y="195" fill="#a6adc8" font-size="14" text-anchor="middle">面积 = ?</text>

@@ -311,17 +311,41 @@
           <text x="90" y="200" fill="#f38ba8" font-size="14" text-anchor="middle" font-style="italic">a</text>
           <line x1="250" y1="176" x2="250" y2="186" stroke="#f38ba8" stroke-width="1" />
           <text x="250" y="200" fill="#f38ba8" font-size="14" text-anchor="middle" font-style="italic">b</text>
-          <!-- f(x) 曲线（上方） -->
-          <path d="M 90 140 Q 150 145 200 110 Q 230 80 250 60" fill="none" stroke="#89dceb" stroke-width="2" />
+          <!-- f(x) 曲线（上方）(JS 密集采样) -->
+          <polyline id="s18-f" fill="none" stroke="#89dceb" stroke-width="2" />
+          <!-- g(x) 曲线（下方）(JS 密集采样) -->
+          <polyline id="s18-g" fill="none" stroke="#f9e2af" stroke-width="2" />
+          <!-- 阴影区域 -->
+          <polygon id="s18-shadow" fill="#cdd6f4" opacity="0.12" />
+          <script>
+            (function() {
+              var x0 = 90, x1 = 250;
+              var ptsF = [], ptsG = [], ptsS = [];
+              for (var i = 0; i <= 80; i++) {
+                var t = i / 80; /* 0..1 */
+                var px = x0 + t * (x1 - x0);
+                var pyF = 140 - 50 * t - 30 * t * t;
+                var pyG = 165 - 45 * t - 20 * t * t;
+                ptsF.push(px.toFixed(1) + ',' + pyF.toFixed(1));
+                ptsG.push(px.toFixed(1) + ',' + pyG.toFixed(1));
+                ptsS.push(px.toFixed(1) + ',' + pyF.toFixed(1));
+              }
+              /* shadow: close downward along g(x) back to start */
+              for (var j = 80; j >= 0; j--) {
+                var t2 = j / 80;
+                var px2 = x0 + t2 * (x1 - x0);
+                var pyG2 = 165 - 45 * t2 - 20 * t2 * t2;
+                ptsS.push(px2.toFixed(1) + ',' + pyG2.toFixed(1));
+              }
+              document.getElementById('s18-f').setAttribute('points', ptsF.join(' '));
+              document.getElementById('s18-g').setAttribute('points', ptsG.join(' '));
+              document.getElementById('s18-shadow').setAttribute('points', ptsS.join(' '));
+            })();
+          </script>
           <text x="280" y="55" fill="#89dceb" font-size="14" font-style="italic">f</text>
           <text x="288" y="55" fill="#89dceb" font-size="14">(x)</text>
-          <!-- g(x) 曲线（下方） -->
-          <path d="M 90 165 Q 150 160 200 145 Q 230 125 250 100" fill="none" stroke="#f9e2af" stroke-width="2" />
           <text x="280" y="98" fill="#f9e2af" font-size="14" font-style="italic">g</text>
           <text x="288" y="98" fill="#f9e2af" font-size="14">(x)</text>
-          <!-- 阴影区域 -->
-          <path d="M 90 140 Q 150 145 200 110 Q 230 80 250 60 L 250 100 Q 230 125 200 145 Q 150 160 90 165 Z"
-            fill="#cdd6f4" opacity="0.12" />
           <!-- 标注 -->
           <text x="170" y="122" fill="#a6adc8" font-size="12" text-anchor="middle">f(x) − g(x)</text>
         </svg>
